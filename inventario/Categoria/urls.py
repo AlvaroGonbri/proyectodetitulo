@@ -2,5 +2,5 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('vistaInventario', Clase1.as_view())
+    path('categoria', Clase1.as_view())
 ]
