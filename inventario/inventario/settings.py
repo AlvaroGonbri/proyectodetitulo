@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'vistaInventario'
 ]
 
 MIDDLEWARE = [
@@ -73,11 +74,18 @@ WSGI_APPLICATION = 'inventario.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": {
+        "ENGINE": "mssql",
+        "NAME": "inventario",
+        "USER": "back-endsync",
+        "PASSWORD": "Duoc.2024++",
+        "HOST": "localhost\\SQLEXPRESS",
+        "PORT": "",
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
+        },
+    },
 }
+
 
 
 # Password validation
