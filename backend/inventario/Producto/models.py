@@ -1,4 +1,5 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Producto(models.Model):
     stock_minimo = models.IntegerField(default=20)
     stock_maximo = models.IntegerField(default=100)
     categoria_id = models.IntegerField()
+    
 
     def __str__(self):
         return str(self.cod_material)
@@ -18,4 +20,4 @@ class Producto(models.Model):
         db_table='Producto'
         verbose_name='Producto'
         verbose_name_plural='Productos'
-        managed = False
+        managed = True

@@ -12,11 +12,25 @@ from http import HTTPStatus
 
 class Clase1(APIView):
 
+
+
     def get(self, request):
-        # select * from caterorias order by id desc
+        # select * from productos order by id desc
         data = Producto.objects.order_by('-cod_material').all()
         datos_json = CategoriaSerializer(data, many=True)
         return JsonResponse({"data":datos_json.data}, status=HTTPStatus.OK)
+        
+
+    def post(self, request):
+        if request.data.get("nom_producto")==None or not request.data['nom_producto']:
+            return JsonResponse({"estado":"error", "mensaje":"El campo nombre es obligatorio"})
+            status=HTTPStatus.BAD_REQUEST
+        try:
+            Producto.objects.create(nom_producto=request.data['nom_producto'])
+            return JsonResponse({"estado":"ok", "mensaje":"Se crea el registro exitosamente"},
+            status=HTTPStatus.CREATED)
+        except Exception as e:
+            raise Http404
         
 
 class Clase2(APIView):
