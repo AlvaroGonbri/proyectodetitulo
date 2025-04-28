@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @for (item of items; track item.cod_material) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Código: {{ item.cod_material }}</ion-card-subtitle>
+        <ion-card-title>{{ item.nom_producto }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div>Descripción: {{ item.descripcion }}</div>
+        <div>Existencia: {{ item.cant_existencia }}</div>
+        <div>Stock mínimo: {{ item.stock_minimo }}</div>
+        <div>Stock máximo: {{ item.stock_maximo }}</div>
+        <div>Categoría: {{ item.categoria_id }}</div>
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>
