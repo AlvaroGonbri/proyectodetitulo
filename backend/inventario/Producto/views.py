@@ -9,6 +9,7 @@ from http import HTTPStatus
 
 # Create your views here.
 
+#agregar cabezera a json
 
 class Clase1(APIView):
 
@@ -34,20 +35,21 @@ class Clase1(APIView):
         
 
 class Clase2(APIView):
-
-    def get(self, request, id):
-        try:
-            data = Producto.objects.get(cod_material=id)
-            return JsonResponse({
-                "data": {
-                    "cod_material": data.cod_material,
-                    "nom_producto": data.nom_producto,
-                    "cant_existencia": data.cant_existencia,
-                    "descripcion": data.descripcion,
-                    "stock_minimo": data.stock_minimo,
-                    "stock_maximo": data.stock_maximo,
-                    "categoria_id": data.categoria_id,
-                }
-            }, status=HTTPStatus.OK)
-        except Producto.DoesNotExist:
-            raise Http404()
+    def get(self, request):
+        palabra_clave = request.GET.get('q', '')
+        productos = Producto.objects.filter(nom_producto__icontains=palabra_clave)
+        if not productos.exists():
+            raise Http404("No se encontraron productos con esa palabra clave.")
+        data = [
+            {
+                "cod_material": p.cod_material,
+                "nom_producto": p.nom_producto,
+                "cant_existencia": p.cant_existencia,
+                "descripcion": p.descripcion,
+                "stock_minimo": p.stock_minimo,
+                "stock_maximo": p.stock_maximo,
+                "categoria_id": p.categoria_id,
+            }
+            for p in productos
+        ]
+        return JsonResponse({"data": data}, status=200, safe=False)

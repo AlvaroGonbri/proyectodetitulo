@@ -21,3 +21,6 @@ class Producto(models.Model):
         verbose_name='Producto'
         verbose_name_plural='Productos'
         managed = True
+
+
+#crear api key

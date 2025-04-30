@@ -86,6 +86,7 @@ DATABASES = {
         "ENGINE": "mssql",
         "NAME": "inventario",
         "USER": "back-endsync",
+        #protejer proceso de conexión variable de entorno
         "PASSWORD": "Duoc.2024++",
         "HOST": "localhost\\SQLEXPRESS",
         "PORT": "",
