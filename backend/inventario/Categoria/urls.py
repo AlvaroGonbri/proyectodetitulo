@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import *
+from .views import CategoriaListCreateAPIView
 
 urlpatterns = [
-    path('categoria', Clase1.as_view())
+    path('', CategoriaListCreateAPIView.as_view(), name='categoria-list-create'),
 ]

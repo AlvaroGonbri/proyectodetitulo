@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, IonSearchbar } from '@ionic/angular';
 import { ViewPageRoutingModule } from './view-routing.module';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { ViewPageRoutingModule } from './view-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewPageRoutingModule
+    ViewPageRoutingModule,
     // No agregues ViewPage aquí si es standalone
     // No agregues HttpClientModule aquí si ya está en AppModule
   ],

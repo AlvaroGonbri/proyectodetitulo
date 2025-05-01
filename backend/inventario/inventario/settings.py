@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.common.CommonMiddleware',
+    'Producto.middleware.SecurityHeadersMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +57,11 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8100",
+    "http://127.0.0.1:8100",
+
 ]
+
+CORS_EXPOSE_HEADERS = ['X-API-Version', 'Content-Range']
 
 
 ROOT_URLCONF = 'inventario.urls'

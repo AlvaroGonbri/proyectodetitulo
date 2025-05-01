@@ -3,9 +3,9 @@
     <ion-title>Productos</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterItems()"></ion-searchbar>
 <ion-content>
-  @for (item of items; track item.cod_material) {
+  @for (item of filteredItems; track item.cod_material) {
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Código: {{ item.cod_material }}</ion-card-subtitle>

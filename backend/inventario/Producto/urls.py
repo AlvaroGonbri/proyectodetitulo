@@ -1,7 +1,13 @@
 from django.urls import path
-from .views import *
+from .views import ProductoListCreateAPIView, ProductoSearchAPIView
 
 urlpatterns = [
-    path('producto', Clase1.as_view()),
-    path('producto/', Clase2.as_view())
+    # Endpoint para listar y crear productos
+    # GET /rest/v1/producto/  - Lista todos los productos
+    # POST /rest/v1/producto/ - Crea un nuevo producto
+    path('', ProductoListCreateAPIView.as_view(), name='productos-list-create'),
+
+    # Endpoint para buscar productos por palabra clave
+    # GET /rest/v1/producto/buscar/?q=palabra
+    path('buscar/', ProductoSearchAPIView.as_view(), name='productos-search'),
 ]

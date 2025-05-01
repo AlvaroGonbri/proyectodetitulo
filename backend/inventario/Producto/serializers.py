@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import *
+from .models import Producto
 
-
-class CategoriaSerializer(serializers.ModelSerializer):
-
+class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = ("cod_material", "nom_producto", "cant_existencia", "descripcion", "stock_minimo", "stock_maximo", "categoria_id")
+        fields = '__all__'
+        extra_kwargs = {
+            'cod_material': {'read_only': True}  # Auto-incremental
+        }
