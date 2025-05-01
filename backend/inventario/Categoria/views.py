@@ -1,4 +1,3 @@
-# views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -62,4 +61,34 @@ class CategoriaListCreateAPIView(APIView):
             return Response(
                 {"status": "error", "mensaje": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Categoria
+from .serializers import CategoriaSerializer
+
+class CategoriaUpdateAPIView(APIView):
+    def put(self, request, id):
+        # Validar que el campo 'nom_categoria' esté presente y no vacío
+        if request.data.get("nom_categoria") is None or not request.data.get("nom_categoria"):
+            return Response(
+                {"status": "error", "mensaje": "El campo nom_categoria es obligatorio"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        try:
+            # Verificar que la categoría exista
+            categoria = Categoria.objects.get(pk=id)
+            # Actualizar el nombre
+            categoria.nom_categoria = request.data.get("nom_categoria")
+            categoria.save()
+            return Response(
+                {"status": "success", "mensaje": "Se modificó el registro exitosamente"},
+                status=status.HTTP_200_OK
+            )
+        except Categoria.DoesNotExist:
+            return Response(
+                {"status": "error", "mensaje": "Categoría no encontrada"},
+                status=status.HTTP_404_NOT_FOUND
             )
