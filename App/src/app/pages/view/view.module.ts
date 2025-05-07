@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, IonSearchbar } from '@ionic/angular';
 import { ViewPageRoutingModule } from './view-routing.module';
-
+//test commit
 @NgModule({
   imports: [
     CommonModule,
