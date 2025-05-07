@@ -1,0 +1,133 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+:root {
+    --color-primario: #00ABE4;
+    --color-secundario: #002349;
+    --color-fondo: #E9F1FA;
+    --color-acento: #FFCE32;
+    --color-blanco: #FFFFFF;
+    --color-gris: #F0F0F0;
+  }
+  
+  /* Fondo general */
+  body, ion-content {
+    background: var(--color-fondo) !important;
+  }
+  
+  /* Barra superior */
+  ion-toolbar {
+    background: var(--color-primario) !important;
+    color: var(--color-blanco) !important;
+    box-shadow: 0 2px 8px rgba(0, 171, 228, 0.08);
+  }
+  
+  /* Título principal */
+  .titulo-productos {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--color-secundario);
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0 auto;
+  }
+  
+  /* Botones principales */
+  ion-button, .ion-button {
+    --background: var(--color-acento);
+    --color: var(--color-secundario);
+    --border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  /* Searchbar y select */
+  ion-searchbar,
+  ion-select {
+    --background: var(--color-blanco);
+    --color: var(--color-secundario);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 171, 228, 0.08);
+  }
+  
+  /* Cartas de productos */
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .producto-card {
+    min-width: 0;
+    background: var(--color-blanco);
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    border-radius: 12px;
+    transition: transform 0.2s;
+    border: 1px solid var(--color-primario);
+  }
+  .producto-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.16);
+  }
+  
+  /* Responsive grid */
+  @media (max-width: 900px) {
+    .productos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .productos-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Botón editar */
+  .boton-editar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+    --color: var(--color-primario);
+  }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'; // Corrección en la importación
+import { map } from 'rxjs/operators';
 
 export interface Producto {
   cod_material: number;
@@ -13,17 +13,38 @@ export interface Producto {
   categoria_id: number;
 }
 
+export interface Tecnico {
+  id: number;
+  nombre: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class APIService {
-  url = "http://127.0.0.1:8000/rest/v1/producto";
+  private baseUrl = "http://127.0.0.1:8000/rest/v1";
+  private productoUrl = `${this.baseUrl}/producto`;
 
   constructor(private http: HttpClient) { }
 
   getdata(): Observable<Producto[]> {
-    return this.http.get<{ data: Producto[] }>(this.url).pipe(
+    return this.http.get<{ data: Producto[] }>(this.productoUrl).pipe(
       map(response => response.data)
     );
-  } // Cierre correcto del método
+  }
+
+  // Verifica si el producto tiene movimientos/historial
+  verificarMovimientosProducto(productoId: number): Observable<boolean> {
+    return this.http.get<{ tiene_movimientos: boolean }>(
+      `${this.productoUrl}/${productoId}/movimientos`
+    ).pipe(map(response => response.tiene_movimientos));
+  }
+
+  // Elimina el producto
+  eliminarProducto(productoId: number): Observable<any> {
+    return this.http.delete(`${this.productoUrl}/${productoId}`);
+  }
+  restarCantidad(cod_material: number, cantidad: number): Observable<any> {
+    return this.http.patch(`${this.productoUrl}/${cod_material}/restar_cantidad`, { cantidad });
+  }
 }

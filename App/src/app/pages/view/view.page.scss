@@ -1,0 +1,126 @@
+:root {
+    --color-catego: #4ba5c9bd;
+    --color-secundio: #002349;
+    --color-fondo: rgb(220, 241, 250);
+    --color-acento: #FFCE32;
+    --color-blanco: #FFFFFF;
+    --color-gris: #F0F0F0;
+  }
+  
+  .titulo-productos {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #2d3436;
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0 auto;
+  }
+  
+  /* Barra de búsqueda responsiva y alineada */
+  .barra-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .barra-busqueda ion-searchbar {
+    flex: 1 1 300px;
+    min-width: 200px;
+  }
+  
+  /* Estilo para ion-select con color primario y texto secundario */
+  .barra-busqueda ion-select {
+    width: 150px;
+    min-width: 120px;
+    --background: var(--color-blanco);
+    --color: var(--color-blanco); /* Texto blanco para contraste */
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 171, 228, 0.08);
+  }
+  
+  .barra-busqueda ion-button {
+    flex-shrink: 0;
+    --background: var(--color-acento);
+    --color: var(--color-secundario);
+    --border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    .barra-busqueda {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+    .barra-busqueda ion-select,
+    .barra-busqueda ion-button {
+      width: 100% !important;
+      min-width: unset;
+    }
+    .barra-busqueda ion-searchbar {
+      flex: 1 1 100%;
+      min-width: unset;
+    }
+  }
+  
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .producto-card {
+    min-width: 0;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    border-radius: 12px;
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .producto-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 4px 16px #2c3e5029;
+  }
+  .boton-editar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+  }
+  .boton-eliminar {
+    position: absolute;
+    top: 8px;
+    right: 48px; /* Ajusta si tienes otros botones */
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+    --color: #e74c3c;
+  }
+  
+  /* Responsive grid */
+  @media (max-width: 900px) {
+    .productos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .productos-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

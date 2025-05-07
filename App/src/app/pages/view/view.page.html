@@ -1,23 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Productos</ion-title>
+    <ion-title class="titulo-productos">Productos</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterItems()"></ion-searchbar>
+
+<div class="barra-busqueda">
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterItems()"
+    (ionChange)="onSearchbarChange()"
+    style="flex: 1;"
+    placeholder="Buscar productos"
+  ></ion-searchbar>
+
+  <ion-select [(ngModel)]="sortOption" (ionChange)="sortItems()" interface="popover" placeholder="Ordenar por" style="width: 150px;">
+    <ion-select-option value="nombre">Nombre</ion-select-option>
+    <ion-select-option value="categoria">Categoría</ion-select-option>
+    <ion-select-option value="cantidad">Cantidad</ion-select-option>
+  </ion-select>
+
+  <ion-button size="small" (click)="filterItems()">
+    <ion-icon name="search" slot="icon-only"></ion-icon>
+  </ion-button>
+</div>
+
 <ion-content>
-  @for (item of filteredItems; track item.cod_material) {
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>Código: {{ item.cod_material }}</ion-card-subtitle>
-        <ion-card-title>{{ item.nom_producto }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div>Descripción: {{ item.descripcion }}</div>
-        <div>Existencia: {{ item.cant_existencia }}</div>
-        <div>Stock mínimo: {{ item.stock_minimo }}</div>
-        <div>Stock máximo: {{ item.stock_maximo }}</div>
-        <div>Categoría: {{ item.categoria_id }}</div>
-      </ion-card-content>
-    </ion-card>
-  }
+  <div *ngIf="showNoResultsMessage" style="text-align:center; margin-top: 2rem; color: #e67e22;">
+    No se encontraron coincidencias.
+  </div>
+
+  <div class="productos-grid">
+    @for (item of filteredItems; track item.cod_material) {
+      <ion-card class="producto-card">
+        <ion-card-header>
+          <ion-card-subtitle>Código: {{ item.cod_material }}</ion-card-subtitle>
+          <ion-card-title>{{ item.nom_producto }}</ion-card-title>
+          <ion-button 
+            fill="clear" 
+            color="primary" 
+            (click)="abrirMenuProducto(item)"
+            class="boton-editar"
+          >
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
+        </ion-card-header>
+        <ion-card-content>
+          <div>Descripción: {{ item.descripcion }}</div>
+          <div>Existencia: {{ item.cant_existencia }}</div>
+          <div>Stock mínimo: {{ item.stock_minimo }}</div>
+          <div>Stock máximo: {{ item.stock_maximo }}</div>
+          <div>Categoría: {{ item.categoria_id }}</div>
+        </ion-card-content>
+      </ion-card>
+    }
+  </div>
 </ion-content>
