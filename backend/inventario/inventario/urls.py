@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rest/v1/categoria/', include('Categoria.urls')),
     path('rest/v1/producto/', include('Producto.urls')),
+    path('rest/v1/tecnico/', include('tecnico.urls'))
     # ... otras rutas ...
 ]
 

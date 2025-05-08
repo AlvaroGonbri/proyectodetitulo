@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import ProductoListCreateAPIView, ProductoSearchAPIView, ProductoUpdateAPIView
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     # GET /rest/v1/producto/buscar/?q=palabra
     path('buscar/', ProductoSearchAPIView.as_view(), name='productos-search'),
     path('<int:id>/', ProductoUpdateAPIView.as_view(), name='producto-update'),
+    
 ]
